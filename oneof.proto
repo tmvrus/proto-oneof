@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package com.example.oneof;
+
+option go_package = "proto";
+
+import "validate/validate.proto";
+
+message Event {
+    oneof event {
+        option (validate.required) = true;
+
+        EventA event_a = 1;
+        EventB event_b = 2;
+        EventC event_c = 3;
+    }
+}
+
+message EventA {
+    string A = 1;
+}
+
+message EventB {
+    string A = 1;
+    int64  B = 2;
+}
+
+message EventC {
+    string A = 1;
+    int64  B = 2;
+
+    message Context {
+        int64 x = 1;
+        int64 y = 2;
+    }
+
+    Context C = 3;
+}

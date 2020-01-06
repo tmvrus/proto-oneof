@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package com.example.code;
+
+option go_package = "proto";
+
+enum EventCode {
+    A = 0;
+    B = 1;
+    C = 2;
+}
+
+message EventWithCode {
+    EventCode Type = 1;
+    EventWithCodeA event_a = 2;
+    EventWithCodeB event_b = 3;
+    EventWithCodeC event_c = 4;
+}
+
+message EventWithCodeA {
+    string A = 1;
+}
+
+message EventWithCodeB {
+    string A = 1;
+    int64  B = 2;
+}
+
+message EventWithCodeC {
+    string A = 1;
+    int64  B = 2;
+
+    message Context {
+        int64 x = 1;
+        int64 y = 2;
+    }
+
+    Context C = 3;
+}
